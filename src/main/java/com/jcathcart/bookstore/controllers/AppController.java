@@ -1,6 +1,6 @@
 package com.jcathcart.bookstore.controllers;
 
-import com.jcathcart.bookstore.contants.AppConstants;
+import com.jcathcart.bookstore.constants.AppConstants;
 import com.jcathcart.bookstore.util.MemoryUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

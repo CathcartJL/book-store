@@ -1,12 +1,8 @@
 package com.jcathcart.bookstore.model;
 
-
-import sun.jvm.hotspot.gc.shared.Generation;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Publisher {
@@ -15,13 +11,16 @@ public class Publisher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
+    private List<Book> books = new ArrayList<>();
 
     public Publisher() {
     }
 
-    public Publisher(Long id, String name) {
+    public Publisher(Long id, String name, List<Book> books) {
         this.id = id;
         this.name = name;
+        this.books = books;
     }
 
     public Long getId() {
@@ -38,5 +37,13 @@ public class Publisher {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

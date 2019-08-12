@@ -23,7 +23,7 @@ public class GenreService {
     }
 
     public List<Genre> getAll() {
-        return (ArrayList) genreRepository.findAll();
+        return (List) genreRepository.findAll();
     }
 
     public Genre save(Genre genre) {

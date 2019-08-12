@@ -1,9 +1,9 @@
 package com.jcathcart.bookstore.repositories;
 
-import com.jcathcart.bookstore.model.Genre;
+import com.jcathcart.bookstore.model.Publisher;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PublisherRepository extends CrudRepository<Genre, Long> {
+public interface PublisherRepository extends CrudRepository<Publisher, Long> {
 }

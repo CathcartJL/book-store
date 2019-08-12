@@ -1,4 +1,4 @@
-package com.jcathcart.bookstore.contants;
+package com.jcathcart.bookstore.constants;
 
 public class AppConstants {
 

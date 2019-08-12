@@ -8,18 +8,23 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    private String name;
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
     private Genre genre;
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
     private Publisher publisher;
     @ManyToOne
+    @JoinColumn(name = "author_id")
     private Author author;
 
     public Book() {
     }
 
-    public Book(Long id, Genre genre, Publisher publisher, Author author) {
+    public Book(Long id, String name, Genre genre, Publisher publisher, Author author) {
         this.id = id;
+        this.name = name;
         this.genre = genre;
         this.publisher = publisher;
         this.author = author;
@@ -31,6 +36,14 @@ public class Book {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Genre getGenre() {

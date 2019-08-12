@@ -1,9 +1,10 @@
 package com.jcathcart.bookstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Author {
@@ -14,15 +15,17 @@ public class Author {
     private Long id;
     private String firstname;
     private String lastname;
-    private Genre genre;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
+    private List<Book> books = new ArrayList<>();
 
     public Author() {
     }
 
-    public Author(String firstname, String lastname, Genre genre) {
+    public Author(String firstname, String lastname, List<Book> books) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.genre = genre;
+        this.books = books;
     }
 
     public Long getId() {
@@ -33,27 +36,27 @@ public class Author {
         this.id = id;
     }
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
+    public void setFirstName(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastName(String lastname) {
         this.lastname = lastname;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }
