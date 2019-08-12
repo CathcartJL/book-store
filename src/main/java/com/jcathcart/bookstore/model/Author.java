@@ -13,18 +13,22 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Book> books = new ArrayList<>();
 
-    public Author() {
+    public Author() { }
+
+    public Author(Long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public Author(String firstname, String lastname, List<Book> books) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Author(Long id, String firstName, String lastName, List<Book> books) {
+        this(id, firstName , lastName);
         this.books = books;
     }
 
@@ -37,19 +41,19 @@ public class Author {
     }
 
     public String getFirstName() {
-        return firstname;
+        return firstName;
     }
 
     public void setFirstName(String firstname) {
-        this.firstname = firstname;
+        this.firstName = firstname;
     }
 
     public String getLastName() {
-        return lastname;
+        return lastName;
     }
 
     public void setLastName(String lastname) {
-        this.lastname = lastname;
+        this.lastName = lastname;
     }
 
     public List<Book> getBooks() {
