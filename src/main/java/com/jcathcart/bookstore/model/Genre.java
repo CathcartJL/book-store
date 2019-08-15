@@ -11,16 +11,12 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
-    private List<Book> books = new ArrayList<>();
 
-    public Genre() {
-    }
+    public Genre() { }
 
-    public Genre(Long id, String name, List<Book> books) {
+    public Genre(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.books = books;
     }
 
     public Long getId() {
@@ -39,12 +35,11 @@ public class Genre {
         this.name = name;
     }
 
-        public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    @Override
+    public String toString() {
+        return "Genre{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
-

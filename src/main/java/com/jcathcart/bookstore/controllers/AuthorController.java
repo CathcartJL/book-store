@@ -6,9 +6,8 @@ import com.jcathcart.bookstore.services.AuthorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,13 +24,28 @@ public class AuthorController {
 
     @GetMapping(AuthorConstants.BASE_URL)
     public List<Author> getAllAuthors() {
-        return authorService.getAllAuthors();
+        return authorService.getAll();
     }
 
     @GetMapping(AuthorConstants.BASE_URL + "/{id}")
-    public Author getAuthorbyId(@PathVariable Long id) {
-        return authorService.getAuthorbyId(id);
+    public Author getAuthorById(@PathVariable Long id) {
+        return authorService.getById(id);
     }
 
+    @PostMapping(AuthorConstants.BASE_URL)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Author saveAuthor(@RequestBody Author author) {
+        return authorService.save(author);
+    }
 
+    @PutMapping(AuthorConstants.BASE_URL)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Author updateAuthor(@RequestBody Author author) {
+        return authorService.save(author);
+    }
+
+    @DeleteMapping(AuthorConstants.BASE_URL + "/{id}")
+    public void deleteAuthorById(@PathVariable Long id) {
+        authorService.deleteById(id);
+    }
 }

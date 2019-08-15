@@ -31,12 +31,12 @@ public class PublisherService {
     }
 
     public Publisher save(Publisher publisher) {
-        log.debug("Saving publisher {}", publisher);
+        log.debug("Saving publisher: {}", publisher);
         return publisherRepository.save(publisher);
     }
 
     public void deleteById(Long id) {
-        log.debug("Deleting publisher with id {}", id);
+        log.debug("Deleting publisher with id: {}", id);
         publisherRepository.deleteById(id);
     }
 

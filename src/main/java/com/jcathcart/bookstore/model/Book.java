@@ -19,8 +19,7 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    public Book() {
-    }
+    public Book() { }
 
     public Book(Long id, String name, Genre genre, Publisher publisher, Author author) {
         this.id = id;
@@ -68,5 +67,16 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genre=" + genre +
+                ", publisher=" + publisher +
+                ", author=" + author +
+                '}';
     }
 }

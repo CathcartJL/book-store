@@ -8,7 +8,7 @@ public class MemoryUtil {
     private Runtime runtime;
 
     public MemoryUtil() {
-        this.runtime = runtime.getRuntime();
+        this.runtime = Runtime.getRuntime();
     }
 
     public String getStats() {
@@ -21,5 +21,4 @@ public class MemoryUtil {
 
         return stats;
     }
-
 }

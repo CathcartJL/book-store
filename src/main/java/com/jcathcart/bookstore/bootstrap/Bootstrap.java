@@ -10,8 +10,11 @@ import com.jcathcart.bookstore.services.GenreService;
 import com.jcathcart.bookstore.services.PublisherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import javax.transaction.Transactional;
 
 @Component
 public class Bootstrap implements CommandLineRunner {
@@ -23,6 +26,7 @@ public class Bootstrap implements CommandLineRunner {
     private final GenreService genreService;
     private final PublisherService publisherService;
 
+    @Autowired
     public Bootstrap(BookService bookService, AuthorService authorService, GenreService genreService, PublisherService publisherService) {
         this.bookService = bookService;
         this.authorService = authorService;
@@ -32,6 +36,7 @@ public class Bootstrap implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         log.debug("Bootstrap is on the run!");
         initData();
@@ -45,25 +50,18 @@ public class Bootstrap implements CommandLineRunner {
 
         author1.setFirstName("John");
         author1.setLastName("Austin");
-        authorService.save(author1);
+        Author savedAuthor1 = authorService.save(author1);
 
-        publisher1.setName("Penguin");
-        publisherService.save(publisher1);
-
-        book1.setName("The Magical Marsupial");
-        book1.setAuthor(author1);
-        book1.setGenre(genre1);
-        book1.setPublisher(publisher1);
-
-        author1.getBooks().add(book1);
+        publisher1.setName("Schill Factor");
+        Publisher savedPublisher1 = publisherService.save(publisher1);
 
         genre1.setName("Horror");
-        genre1.getBooks().add(book1);
-        genreService.save(genre1);
+        Genre savedGrenre = genreService.save(genre1);
 
-        publisher1.getBooks().add(book1);
-
-//        authorService.save(author1);
+        book1.setName("Tusk");
+        book1.setAuthor(savedAuthor1);
+        book1.setPublisher(savedPublisher1);
+        book1.setGenre(savedGrenre);
         bookService.save(book1);
     }
 }

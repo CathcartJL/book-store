@@ -14,25 +14,29 @@ public class AuthorService {
 
     private final Logger log = LoggerFactory.getLogger(AuthorService.class);
     private final AuthorRepository authorRepository;
-    
+
     @Autowired
     public AuthorService(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
-    
-    public Author getAuthorbyId(Long id) {
+
+    public Author getById(Long id) {
+        log.debug("Getting author with id: {}", id);
         return authorRepository.findById(id).orElse(null);
     }
 
-    public List<Author> getAllAuthors() {
+    public List<Author> getAll() {
+        log.debug("Getting all authors...");
         return (List) authorRepository.findAll();
     }
 
     public Author save(Author author) {
+        log.debug("Saving author: {}", author);
         return authorRepository.save(author);
     }
 
-    public void deleteById (Long id) {
+    public void deleteById(Long id) {
+        log.debug("Deleting author with id: {}", id);
         authorRepository.deleteById(id);
     }
 }
